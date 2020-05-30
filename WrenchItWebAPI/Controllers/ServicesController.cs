@@ -51,6 +51,18 @@ namespace WrenchItWebAPI.Controllers
             _context.SaveChanges();
             return Ok(serviceToUpdate);            
         }
+        [HttpGet]
+
+        public IActionResult GetPendingServices()
+        {
+            Service serviceIsNotCompleted = (Service)_context.Services.Where(a => a.IsCompleted != true);
+            if (serviceIsNotCompleted != null)
+            {
+                return Ok(serviceIsNotCompleted);
+            }
+            return NotFound();
+        }
+
 
         // POST: api/Services
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -58,6 +70,7 @@ namespace WrenchItWebAPI.Controllers
         [HttpPost]
         public IActionResult PostService([FromBody]Service service)
         {
+            service.IsCompleted = false;
             _context.Services.Add(service);
            _context.SaveChanges();
 
