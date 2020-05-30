@@ -62,7 +62,16 @@ namespace WrenchItWebAPI.Controllers
             }
             return NotFound();
         }
-
+        [HttpGet("{id}")]
+        public IActionResult GetServiceRequestByCustomerId(long customerid)
+        {
+            Service service = _context.Services.Where(a => a.CustomerId == customerid).FirstOrDefault();
+            if (service != null)
+            {
+                return Ok(service);
+            }
+            return NotFound();
+        }
 
         // POST: api/Services
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
