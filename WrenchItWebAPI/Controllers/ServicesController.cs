@@ -46,9 +46,8 @@ namespace WrenchItWebAPI.Controllers
         {
             //update service
             var serviceToUpdate = _context.Services.Single(a => a.ServiceId == service.ServiceId);
-            serviceToUpdate.ServiceName = service.ServiceName;
-            serviceToUpdate.EstimatedTimeToComplete = service.EstimatedTimeToComplete;
-            serviceToUpdate.Labor = service.Labor;
+           
+            serviceToUpdate.IsCompleted = service.IsCompleted;
             _context.SaveChanges();
             return Ok(serviceToUpdate);            
         }

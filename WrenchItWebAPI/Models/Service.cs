@@ -8,9 +8,9 @@ namespace WrenchItWebAPI.Models
     public class Service
     {
         public int ServiceId { get; set; }
-        public string ServiceName { get; set; }
-        public double EstimatedTimeToComplete { get; set; }
-        public double Labor { get; set; }
-      //  public string Image { get; set; }
+        public long CustomerId { get; set; }
+        public double PriceQuotation { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }
