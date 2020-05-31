@@ -7,6 +7,7 @@ namespace WrenchItWebAPI.Models
 {
     public class Service
     {
+        public int id { get; set; }
         public int ServiceId { get; set; }
         public int CustomerId { get; set; }
         public double PriceQuotation { get; set; }

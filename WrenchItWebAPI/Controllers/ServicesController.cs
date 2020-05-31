@@ -42,7 +42,7 @@ namespace WrenchItWebAPI.Controllers
         // PUT: api/Services/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut]
+        [HttpPut("[action]")]
         public IActionResult PutService([FromBody] Service service)
         {
             //update service
@@ -77,7 +77,7 @@ namespace WrenchItWebAPI.Controllers
         // POST: api/Services
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost("[action]")]
         public IActionResult PostService([FromBody]Service service)
         {
             service.IsCompleted = false;
@@ -91,7 +91,7 @@ namespace WrenchItWebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteService(int id)
         {
-            var service =  _context.Services.Where(a => a.ServiceId == id).FirstOrDefault();
+            var service =  _context.Services.Where(a => a.id == id).FirstOrDefault();
             _context.Services.Remove(service);
             _context.SaveChanges();
             return Ok(_context.Services.ToList());

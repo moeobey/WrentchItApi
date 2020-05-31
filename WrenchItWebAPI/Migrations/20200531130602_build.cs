@@ -11,16 +11,17 @@ namespace WrenchItWebAPI.Migrations
                 name: "Services",
                 columns: table => new
                 {
-                    ServiceId = table.Column<int>(nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<long>(nullable: false),
+                    ServiceId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
                     PriceQuotation = table.Column<double>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     IsCompleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.ServiceId);
+                    table.PrimaryKey("PK_Services", x => x.id);
                 });
         }
 

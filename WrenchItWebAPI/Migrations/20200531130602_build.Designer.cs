@@ -10,8 +10,8 @@ using WrenchItWebAPI.Data;
 namespace WrenchItWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200531103110_changeCustomerIDDataType")]
-    partial class changeCustomerIDDataType
+    [Migration("20200531130602_build")]
+    partial class build
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace WrenchItWebAPI.Migrations
 
             modelBuilder.Entity("WrenchItWebAPI.Models.Service", b =>
                 {
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -40,7 +40,10 @@ namespace WrenchItWebAPI.Migrations
                     b.Property<double>("PriceQuotation")
                         .HasColumnType("float");
 
-                    b.HasKey("ServiceId");
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
 
                     b.ToTable("Services");
                 });
