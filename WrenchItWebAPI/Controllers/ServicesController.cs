@@ -66,7 +66,7 @@ namespace WrenchItWebAPI.Controllers
         [HttpGet("[action]/{id}")]
         public IActionResult GetServiceRequestByCustomerId(int id)
         {
-            Service service = _context.Services.Where(a => a.CustomerId == id).FirstOrDefault();
+            var service = _context.Services.Where(a => a.CustomerId == id).ToList();
             if (service != null)
             {
                 return Ok(service);
