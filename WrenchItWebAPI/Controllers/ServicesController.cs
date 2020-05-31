@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WrenchItWebAPI.Data;
 using WrenchItWebAPI.Models;
+using Newtonsoft.Json;
 
 namespace WrenchItWebAPI.Controllers
 {
@@ -22,7 +23,7 @@ namespace WrenchItWebAPI.Controllers
         }
 
         // GET: api/Services
-        [HttpGet]
+        
         public IActionResult GetServices()
         {
             var serviceList = _context.Services.ToList();
@@ -30,7 +31,7 @@ namespace WrenchItWebAPI.Controllers
         }
 
         // GET: api/Services/5
-        [HttpGet("{id}")]
+        [HttpGet("[action]/{id}")]
         public IActionResult GetService(int id)
         {
             Service service = _context.Services.Where(a => a.ServiceId == id).FirstOrDefault();
@@ -51,21 +52,21 @@ namespace WrenchItWebAPI.Controllers
             _context.SaveChanges();
             return Ok(serviceToUpdate);            
         }
-        [HttpGet]
-
+        [HttpGet("[action]")]
         public IActionResult GetPendingServices()
         {
-            Service serviceIsNotCompleted = (Service)_context.Services.Where(a => a.IsCompleted != true);
-            if (serviceIsNotCompleted != null)
+            Service service = _context.Services.Where(a => a.IsCompleted == false).FirstOrDefault();
+
+            if (service != null)
             {
-                return Ok(serviceIsNotCompleted);
+                return Ok(service);
             }
             return NotFound();
         }
-        [HttpGet("{id}")]
-        public IActionResult GetServiceRequestByCustomerId(long customerid)
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetServiceRequestByCustomerId(int id)
         {
-            Service service = _context.Services.Where(a => a.CustomerId == customerid).FirstOrDefault();
+            Service service = _context.Services.Where(a => a.CustomerId == id).FirstOrDefault();
             if (service != null)
             {
                 return Ok(service);
