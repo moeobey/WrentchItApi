@@ -34,7 +34,7 @@ namespace WrenchItWebAPI.Controllers
         [HttpGet("[action]/{id}")]
         public IActionResult GetService(int id)
         {
-            Service service = _context.Services.Where(a => a.ServiceId == id).FirstOrDefault();
+            Service service = _context.Services.Where(a => a.id == id).FirstOrDefault();
 
             return Ok(service);
         }
@@ -46,7 +46,7 @@ namespace WrenchItWebAPI.Controllers
         public IActionResult PutService([FromBody] Service service)
         {
             //update service
-            var serviceToUpdate = _context.Services.Single(a => a.ServiceId == service.ServiceId);
+            var serviceToUpdate = _context.Services.Single(a => a.id == service.id);
            
             serviceToUpdate.IsCompleted = service.IsCompleted;
             _context.SaveChanges();
