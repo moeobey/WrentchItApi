@@ -24,7 +24,7 @@ namespace WrenchItWebAPI.Controllers
 
         // GET: api/Services
         
-        [HttpGet("[action]")]
+       
         public IActionResult GetServices()
         {
             var serviceList = _context.Services.ToList();
